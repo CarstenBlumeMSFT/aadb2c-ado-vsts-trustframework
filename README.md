@@ -1,5 +1,6 @@
 # Azure AD B2C Custom Policy Utils
 This Azure DevOps extension provides multiple tasks to use with Azure AD B2C custom policies developed through the [Azure AD B2C VS code extension](https://github.com/azure-ad-b2c/vscode-extension#policy-settings).
+
 ![New Tasks](media/addTasks.png)
 
 ## Azure AD B2C Service Connection
@@ -12,6 +13,7 @@ The service connection "Azure AD B2C service principal" offers two different opt
 - Client Secret: Uses a symmetric secret to authenticate towards your Azure AD B2C.
 
 You can find the service connection in the dialog to create service connections for your Azure DevOps project:
+
 ![New Service Connection](media/newServiceConnection.png)
 
 ### Setup for the Service Connection with Client Certificate
@@ -34,6 +36,7 @@ You can find the service connection in the dialog to create service connections 
 
 # Task to build all Azure AD B2C custom policies
 Use this task to build a set of [Azure AD B2C custom policies](https://docs.microsoft.com/azure/active-directory-b2c/custom-policy-overview) by replacing the settings supplied in an appsettings.json file. This action is implemented to provide the same functionality as the "B2C Build all policies" command of the [Azure AD B2C VS code extension](https://github.com/azure-ad-b2c/vscode-extension#policy-settings).
+
 ![B2CBuildAllPolicies](media/taksBuild.png)
 
 ## Sample pipeline to build all policies
@@ -62,6 +65,7 @@ steps:
 
 # Task to upload all Azure AD B2C custom policies
 Use this task to deploy all [Azure AD B2C custom policies](https://docs.microsoft.com/azure/active-directory-b2c/custom-policy-overview) from a folder and its subfolders into your Azure Active Directory B2C tenant using the [Microsoft Graph API](https://docs.microsoft.com/graph/api/resources/trustframeworkpolicy?view=graph-rest-beta). If the policies do not yet exist, they will be created. If the policies already exists, they will be replaced.
+
 ![B2CUploadAllPolicies](media/taksUpload.png)
 
 ### Sample pipeline to upload all policies
