@@ -1,0 +1,59 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+    "id": "d8408c9d-e7d1-4439-84f5-a426460a5f45",
+    "name": "B2CBuildAllPolicies",
+    "friendlyName": "Build all Azure AD B2C custom policies",
+    "description": "A Pipeline task for building all Azure AD B2C policies using the appsettings.json utilized by the VSCode extension",
+    "helpMarkDown": "",
+    "category": "Build",
+    "visibility": [
+        "Build",
+        "Release"
+    ],    
+    "author": "Carsten Blume",
+    "version": {
+        "Major": 0,
+        "Minor": 4,
+        "Patch": 0
+    },
+    "groups": [
+        {
+            "name": "advanced",
+            "displayName": "Advanced",
+            "isExpanded": true
+        }
+    ],
+    "minimumAgentVersion": "2.206.1",
+    "instanceNameFormat": "Build B2C custom policies from $(policyFolder)",
+    "inputs": [
+        {
+            "name": "policyFolder",
+            "type": "filePath",
+            "label": "Policy folder",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "The folder where the custom policies files and appsettings.json are stored"
+        },
+        {
+            "name": "outputFolder",
+            "type": "filePath",
+            "label": "Output folder",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "The folder where the built policy files will be stored in a subfolder for each environment"
+        },
+        {
+            "name": "renumberSteps",
+            "type": "boolean",
+            "label": "Renumber orchestration steps",
+            "defaultValue": false,
+            "required": false,
+            "helpMarkDown": "Renumber the orchestration steps. Possible values: true, or false"
+        }
+    ],
+    "execution": {
+        "Node16": {
+            "target": "dist/index.js"
+        }
+    }
+}

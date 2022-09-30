@@ -1,0 +1,51 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+    "id": "34e8d6f8-8afb-4d5c-afc1-337e7796324a",
+    "name": "B2CUploadAllPolicies",
+    "friendlyName": "Upload all Azure AD B2C custom policies",
+    "description": "A Pipeline task for uploading all Azure AD B2C policies using to an Azure AD B2C tenant",
+    "helpMarkDown": "",
+    "category": "Deploy",
+    "visibility": [
+        "Build",
+        "Release"
+    ],    
+    "author": "Carsten Blume",
+    "version": {
+        "Major": 0,
+        "Minor": 3,
+        "Patch": 0
+    },
+    "groups": [
+        {
+            "name": "advanced",
+            "displayName": "Advanced",
+            "isExpanded": true
+        }
+    ],
+    "minimumAgentVersion": "2.206.1",
+    "instanceNameFormat": "Upload B2C custom policies from $(policyFolder)",
+    "inputs": [
+        {
+            "name": "b2cGraphServicePrincipal",
+            "type": "connectedService:b2cGraphServicePrincipal",
+            "label": "Azure AD B2C service principal",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Select the Azure AD B2C service principal to use."
+        },
+        {
+            "name": "policyFolder",
+            "type": "filePath",
+            "label": "Policy folder",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "The folder where the custom policies files to upload are stored"
+        }
+    ],
+    "execution": {
+        "Node16": {
+            "target": "dist/index.js"
+        }
+    }
+}

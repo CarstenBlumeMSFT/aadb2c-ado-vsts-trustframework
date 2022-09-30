@@ -1,0 +1,57 @@
+name: 'build-test'
+on: # rebuild any PRs and main branch changes
+  pull_request:
+  push:
+    branches:
+      - main
+      - 'releases/*'
+
+jobs:
+  build: # make sure build/ci work properly
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout self
+        uses: actions/checkout@v3
+      - name: Checkout aadb2c-testdata
+        uses: actions/checkout@v3
+        with:
+          repository: CarstenBlumeMSFT/aadb2c-testdata
+          path: './aadb2c-testdata'
+      - name: Run install B2CBuildAllPolicies
+        run: |
+          npm install
+        working-directory: ${{ github.workspace }}/B2CBuildAllPolicies/B2CBuildAllPoliciesV1
+      - name: Run all B2CBuildAllPolicies
+        run: |
+          npm run all
+        working-directory: ${{ github.workspace }}/B2CBuildAllPolicies/B2CBuildAllPoliciesV1
+        env:
+          POLICYFOLDER: ${{ github.workspace }}/aadb2c-testdata/SocialAndLocalAccounts
+          OUTPUTFOLDER: ${{ github.workspace }}/policyOutput
+      - name: Run install B2CUploadAllPolicies
+        run: |
+          npm install
+        working-directory: ${{ github.workspace }}/B2CUploadAllPolicies/B2CUploadAllPoliciesV1
+      - name: Run all B2CUploadAllPolicies
+        run: |
+          npm run all
+        working-directory: ${{ github.workspace }}/B2CUploadAllPolicies/B2CUploadAllPoliciesV1
+        env:
+          POLICYFOLDER: ${{ github.workspace }}/policyOutput/AADB2CTest
+          TENANT: ${{ secrets.tenant }}
+          CLIENTID: ${{ secrets.clientId }}
+          AUTH_PASSWORD: ${{ secrets.authPassword }}
+          AUTH_CERTIFICATE: ${{ secrets.authCertificate }}
+      - name: Run install Extension
+        run: |
+          npm install
+        working-directory: ${{ github.workspace }}
+      - name: Run build Extension
+        run: |
+          npm run build
+        working-directory: ${{ github.workspace }}
+      - name: Upload Extension
+        uses: actions/upload-artifact@v3
+        with:
+          name: ADOExtension
+          path: ./*.vsix

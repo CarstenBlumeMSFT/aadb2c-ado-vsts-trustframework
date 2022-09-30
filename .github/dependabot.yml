@@ -1,0 +1,11 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /B2CBuildAllPolicies/B2CBuildAllPoliciesV1
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: B2CUploadAllPolicies/B2CUploadAllPoliciesV1
+    schedule:
+      interval: daily

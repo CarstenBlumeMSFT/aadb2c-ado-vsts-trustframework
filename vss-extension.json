@@ -1,0 +1,215 @@
+{
+    "manifestVersion": 1,
+    "id": "azure-ad-b2c-custom-policy",
+    "name": "Azure AD B2C Custom Policy Utils",
+    "version": "0.0.7",
+    "publisher": "CarstenBlume",
+    "targets": [
+      {
+        "id": "Microsoft.VisualStudio.Services"
+      }
+    ],
+    "public": false,
+    "scope": [
+      "vso.build",
+      "vso.release"
+    ],
+    "description": "Multiple tasks to use with Azure AD B2C custom policies developed through the VSCode extension",
+    "categories": [
+      "Azure Pipelines"
+    ],
+    "tags": [
+      "Azure",
+      "B2C",
+      "VSCode"
+    ],
+    "screenshots": [
+      {
+        "path": "images/extension-icon.png"
+      }
+    ],
+    "content": {
+      "license": {
+        "path": "LICENSE.md"
+      }
+    },
+    "links": {
+    },
+    "branding": {
+      "color": "rgb(80, 230, 255)",
+      "theme": "light"
+    },
+    "icons": {
+      "default": "images/extension-icon.png"
+    },
+    "files": [
+      {
+        "path": "B2CBuildAllPolicies/B2CBuildAllPoliciesV1/dist",
+        "packagePath": "B2CBuildAllPolicies/B2CBuildAllPoliciesV1/dist"
+      },
+      {
+        "path": "B2CBuildAllPolicies/B2CBuildAllPoliciesV1/icon.png",
+        "packagePath": "B2CBuildAllPolicies/B2CBuildAllPoliciesV1/icon.png"
+      },
+      {
+        "path": "B2CBuildAllPolicies/B2CBuildAllPoliciesV1/task.json",
+        "packagePath": "B2CBuildAllPolicies/B2CBuildAllPoliciesV1/task.json"
+      },
+      {
+        "path": "B2CUploadAllPolicies/B2CUploadAllPoliciesV1/dist",
+        "packagePath": "B2CUploadAllPolicies/B2CUploadAllPoliciesV1/dist"
+      },
+      {
+        "path": "B2CUploadAllPolicies/B2CUploadAllPoliciesV1/icon.png",
+        "packagePath": "B2CUploadAllPolicies/B2CUploadAllPoliciesV1/icon.png"
+      },
+      {
+        "path": "B2CUploadAllPolicies/B2CUploadAllPoliciesV1/task.json",
+        "packagePath": "B2CUploadAllPolicies/B2CUploadAllPoliciesV1/task.json"
+      }
+    ],
+    "contributions": [
+      {
+        "id": "service-endpoint",
+        "description": "Service endpoint type for Azure AD B2C upload service principal which will be used to authenticate to the Microsoft Graph",
+        "type": "ms.vss-endpoint.service-endpoint-type",
+        "targets": [ "ms.vss-endpoint.endpoint-types" ],
+        "properties": {
+          "name": "b2cGraphServicePrincipal",
+          "displayName": "Azure AD B2C service principal",
+          "url": {
+            "displayName": "Url",
+            "value": "https://learn.microsoft.com/en-us/azure/active-directory-b2c/overview",
+            "isVisible": false
+           },
+          "authenticationSchemes": [
+            {
+              "type": "ms.vss-endpoint.endpoint-auth-scheme-basic",
+              "displayName": "Client Secret Authentication",
+              "inputDescriptors": [
+                  {
+                    "id": "username",
+                    "name": "Username",
+                    "description": "Username",
+                    "inputMode": "textbox",
+                    "isConfidential": false,
+                    "validation": {
+                        "isRequired": false,
+                        "dataType": "string"
+                    },
+                      "values": {
+                        "inputId": "usernameInput",
+                        "defaultValue": "",
+                        "isDisabled": true
+                    }
+                  },
+                  {
+                      "id": "password",
+                      "name": "Client Secret",
+                      "description": "The application Secret for a service principal which will be used to authenticate to the Microsoft Graph",
+                      "inputMode": "passwordbox",
+                      "isConfidential": true,
+                      "validation": {
+                          "isRequired": true,
+                          "dataType": "string"
+                      }
+                  }
+              ]
+          },
+          {
+            "type": "ms.vss-endpoint.endpoint-auth-scheme-cert",
+            "displayName": "Client Certificate Authentication",
+            "inputDescriptors": [
+                {
+                  "id": "certificateThumbprint",
+                  "name": "Client Certificate Thumbprint",
+                  "description": "The application Certificate Thumbprint (40-digit hexadecimal string) for a service principal which will be used to authenticate to the Microsoft Graph",
+                  "inputMode": "textbox",
+                  "isConfidential": false,
+                  "validation": {
+                      "isRequired": true,
+                      "dataType": "string"
+                  }
+                },
+                {
+                  "id": "certificate",
+                  "name": "Client Certificate Key",
+                  "description": "The application Certificate Key as string in Base64 encoded and encrypted format (BEGIN ENCRYPTED PRIVATE KEY) for a service principal which will be used to authenticate to the Microsoft Graph",
+                  "inputMode": "TextArea",
+                  "isConfidential": true,
+                  "validation": {
+                      "isRequired": true,
+                      "dataType": "string"
+                  }
+                },
+                {
+                  "id": "certificatePass",
+                  "name": "Client Certificate Passphrase",
+                  "description": "The passphrase to decrypt the supplied application Certificate Key",
+                  "inputMode": "passwordbox",
+                  "isConfidential": true,
+                  "validation": {
+                      "isRequired": true,
+                      "dataType": "string"
+                  }
+                }
+            ]
+        }          
+        ],
+          "inputDescriptors": [
+            {
+              "id": "tenant",
+              "name": "Tenant",
+              "description": "The full Azure AD B2C tenant name (for example, contoso.onmicrosoft.com) or GUID",
+              "type": null,
+              "properties": null,
+              "inputMode": "textBox",
+              "isConfidential": false,
+              "useInDefaultDescription": false,
+              "groupName": null,
+              "valueHint": null,
+              "validation": {
+                "isRequired": true
+              }
+            },
+            {
+              "id": "clientId",
+              "name": "Client Id",
+              "description": "The application Client ID for a service principal which will be used to authenticate to the Microsoft Graph",
+              "type": null,
+              "properties": null,
+              "inputMode": "textBox",
+              "isConfidential": false,
+              "useInDefaultDescription": false,
+              "groupName": null,
+              "valueHint": null,
+              "validation": {
+                "isRequired": true
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "B2CBuildAllPolicies",
+        "type": "ms.vss-distributed-task.task",
+        "targets": [
+          "ms.vss-distributed-task.tasks"
+        ],
+        "properties": {
+          "name": "B2CBuildAllPolicies"
+        }
+      },
+      {
+        "id": "B2CUploadAllPolicies",
+        "type": "ms.vss-distributed-task.task",
+        "targets": [
+          "ms.vss-distributed-task.tasks"
+        ],
+        "properties": {
+          "name": "B2CUploadAllPolicies"
+        }
+      }
+    ]
+  }
+  

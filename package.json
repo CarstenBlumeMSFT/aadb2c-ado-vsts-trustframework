@@ -1,0 +1,8 @@
+{  
+  "scripts": {
+  "build": "npx tfx extension create"
+},
+  "devDependencies": {
+    "tfx-cli": "^0.12.0"
+  }
+}
