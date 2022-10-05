@@ -21,7 +21,7 @@
     "upath": "^2.0.1"
   },
   "devDependencies": {
-    "@types/node": "^18.7.22",
+    "@types/node": "^18.8.2",
     "@types/q": "^1.5.5",
     "@typescript-eslint/parser": "^5.38.0",
     "@vercel/ncc": "^0.34.0",
