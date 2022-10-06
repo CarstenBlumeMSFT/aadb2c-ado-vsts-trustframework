@@ -3,9 +3,9 @@ updates:
   - package-ecosystem: npm
     directory: /B2CBuildAllPolicies/B2CBuildAllPoliciesV1
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
     directory: B2CUploadAllPolicies/B2CUploadAllPoliciesV1
     schedule:
-      interval: daily
+      interval: weekly
