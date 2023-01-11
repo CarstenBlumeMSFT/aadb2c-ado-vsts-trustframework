@@ -17,7 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "aadb2c-core-modules-js": "github:CarstenBlumeMSFT/aadb2c-core-modules-js",
-    "azure-pipelines-task-lib": "^4.0.0-preview",
+    "azure-pipelines-task-lib": "^4.2.0",
     "upath": "^2.0.1"
   },
   "devDependencies": {
