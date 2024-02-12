@@ -68,13 +68,13 @@ class TaskOptions {
       tl
         .getEndpointAuthorizationScheme(b2cGraphServicePrincipal, true)
         ?.toLowerCase() ?? ''
-    tl.debug(`Used authenticationSCheme is ${authScheme}`)
+    tl.debug(`Used authenticationScheme is ${authScheme}`)
 
     this.logger = new TlLogger()
 
     const externalAuth = tl.getEndpointAuthorization(
       b2cGraphServicePrincipal,
-      true
+      false
     )
 
     this.authProvider = new MSALClientCredentialsAuthProvider(
@@ -92,9 +92,11 @@ class TaskOptions {
         )
         break
       case 'usernamepassword':
+        tl.debug(`Starting with client secret`)
         this.authProvider.initializeWithClientSecret(
           externalAuth?.parameters['password'] ?? ''
         )
+        tl.debug(`Done with client secret`)
         break
       case 'none':
       default:

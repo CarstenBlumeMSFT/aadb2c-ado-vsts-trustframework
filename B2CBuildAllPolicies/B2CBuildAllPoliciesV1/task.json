@@ -13,7 +13,7 @@
     "author": "Carsten Blume",
     "version": {
         "Major": 0,
-        "Minor": 4,
+        "Minor": 5,
         "Patch": 0
     },
     "groups": [
@@ -52,7 +52,7 @@
         }
     ],
     "execution": {
-        "Node16": {
+        "Node20": {
             "target": "dist/index.js"
         }
     }

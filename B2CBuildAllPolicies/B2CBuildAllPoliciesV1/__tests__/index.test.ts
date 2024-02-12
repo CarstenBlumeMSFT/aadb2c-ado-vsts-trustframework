@@ -4,7 +4,7 @@ import * as path from 'path'
 import {expect, test} from '@jest/globals'
 
 // shows how the runner will run a javascript action with env / stdout protocol
-test('Upload Policies Client Secret', () => {
+test('Build all policies', () => {
   process.env['INPUT_POLICYFOLDER'] = process.env['POLICYFOLDER']
   process.env['INPUT_OUTPUTFOLDER'] = process.env['OUTPUTFOLDER']
   process.env['INPUT_RENUMBERSTEPS'] = 'true'
